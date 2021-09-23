@@ -1,4 +1,5 @@
 import React, {Fragment,useState} from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const Languages = () => {
 
@@ -10,9 +11,15 @@ const Languages = () => {
         {id:5 ,name:"C#"}
     ])
 
+    const [name,setName]=useState("");
+
+    const namevalue =(e)=>{
+        console.log(e.target.value)
+    }
+
     const addLanguage=(event)=>{
         event.preventDefault() ;
-        setComputerLanguages([...computerLanguages,  {id:6 ,name:"MongoDB"}])
+        setComputerLanguages([...computerLanguages,  {id:uuidv4() ,name:"MongoDB"}])
     }
 
     return (
@@ -33,7 +40,13 @@ const Languages = () => {
                 </tbody>
             </table>
 
-            <input type="submit" className="btn btn-primary" onClick={addLanguage} value="Add Language"/>
+            <div className="form-group">
+                <input type="text" className="form-control" value={name} onChange={namevalue} placeholder="Add Languages..."  />
+            </div> <br />
+
+            <div className="form-group">
+                  <input type="submit" className="btn btn-primary" onClick={addLanguage} value="Add Language"/>
+            </div>
 
         </Fragment>
     );
