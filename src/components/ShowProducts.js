@@ -1,26 +1,30 @@
-import React, {Component} from 'react';
+import React, {useContext, Fragment} from 'react';
 import {ShopContext} from "../Context/ShopContext";
+import {ThemeContext} from "../Context/ThemeContext";
 
-class ShowProducts extends Component {
+const ShowProducts =()=> {
 
-    static contextType=ShopContext ;
+    const {products,doSome}= useContext(ShopContext);
+    const ThemeData=useContext(ThemeContext)
 
-    render() {
-        const {products}=this.context;
+    console.log(ThemeData);
 
         return (
-            <div>
-                <h1>Show Products</h1>
-                {products.map(pro=>(
-                    <div key={pro.id}>
+            <Fragment>
 
-                        <h2>Name : {pro.name}</h2>
-                        <h4>Price : {pro.price}</h4>
-                    </div>
-                ))}
-            </div>
+                <h1>Show Products</h1>
+                <h2 style={{color:"red"}}>{doSome}</h2>
+                    {products.map(pro=>(
+                        <div key={pro.id}>
+
+                            <h2>Name : {pro.name}</h2>
+                            <h4>Price : {pro.price}</h4>
+                        </div>
+                    ))}
+
+            </Fragment>
         );
-    }
+
 }
 
 export default ShowProducts;
